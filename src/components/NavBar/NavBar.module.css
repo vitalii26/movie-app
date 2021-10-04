@@ -1,0 +1,22 @@
+.navbarList {
+  list-style: none;
+  display: flex;
+  width: 100%;
+  max-width: 160px;
+  justify-content: space-between;
+}
+
+.navbarLink {
+  text-decoration: none;
+  color: #edf6ff;
+  background-color: #0082ff;
+  padding: 10px;
+  border-radius: 5px;
+  transition: 0.2s ease;
+}
+
+.navbarLink:hover {
+  background-color: #edf6ff;
+  color: #045eb7;
+  box-shadow: 5px 5px 5px 0 #30abf7;
+}

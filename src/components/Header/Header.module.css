@@ -1,0 +1,16 @@
+.header {
+  background-color: #194674;
+}
+
+.headerContainer {
+  max-width: 1170px;
+  margin: 0 auto;
+  display: flex;
+  padding: 10px 15px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-logo {
+  width: 70px;
+}

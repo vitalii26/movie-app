@@ -1,0 +1,47 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navLink {
+  color: #edf6ff;
+  margin-right: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px;
+  font-size: 1.1rem;
+  border: 2px solid transparent;
+  transition: 0.2s ease;
+}
+
+.navLink:hover {
+  color: #edf6ff;
+  border-color: #edf6ff;
+}
+
+.active {
+  color: #30abf7;
+  border-color: #30abf7;
+}
+
+.userName {
+  color: #30abf7;
+  margin-right: 15px;
+  font-style: italic;
+}
+
+.exitBtn {
+  color: #edf6ff;
+  background-color: #0082ff;
+  padding: 10px 15px;
+  border-color: transparent;
+  border-radius: 5px;
+  transition: 0.2s ease;
+}
+
+.exitBtn:hover {
+  background-color: #edf6ff;
+  color: #045eb7;
+  box-shadow: 5px 5px 5px 0 #30abf7;
+}

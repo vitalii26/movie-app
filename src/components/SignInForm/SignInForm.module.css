@@ -1,0 +1,9 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 30px;
+  max-width: 600px;
+  background-color: #30abf7;
+  border-radius: 20px;
+}

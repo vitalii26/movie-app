@@ -1,0 +1,79 @@
+.movieContainer {
+  display: flex;
+  width: 100%;
+  max-width: 1170px;
+  padding: 40px 15px;
+  margin: 0 auto;
+}
+
+.movieImg {
+  width: 100%;
+  max-width: 300px;
+  height: 100%;
+  margin-right: 40px;
+}
+
+.movieInfo {
+  color: #edf6ff;
+  text-align: left;
+  padding-top: 40px;
+  position: relative;
+}
+
+.movieTitle {
+  margin-bottom: 20px;
+  color: #30abf7;
+}
+
+.movieTagline {
+  font-style: italic;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.movieSubtitle {
+  margin-bottom: 10px;
+}
+
+.movieOverview {
+  line-height: 1.7rem;
+  text-align: justify;
+  margin-bottom: 15px;
+}
+
+.movieLogos {
+  display: inline-flex;
+  width: auto;
+  background-color: rgba(237, 246, 255, 0.8);
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.movieLogo {
+  width: 50px;
+  height: auto;
+  margin-right: 20px;
+  color: #045eb7;
+  font-size: 0.8rem;
+}
+
+.movieLogos li:last-child .movieLogo {
+  margin-right: 0px;
+}
+
+.movieFavouriteBtn {
+  color: rgba(237, 246, 255, 0.5);
+  width: 40px;
+  position: absolute;
+  top: 40px;
+  right: 30px;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.movieFavouriteBtn:hover {
+  color: #30abf7;
+}

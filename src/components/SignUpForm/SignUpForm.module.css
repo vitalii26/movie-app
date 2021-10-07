@@ -7,3 +7,8 @@
   background-color: #30abf7;
   border-radius: 20px;
 }
+.formTitle {
+  color: #045eb7;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}

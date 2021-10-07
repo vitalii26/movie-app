@@ -46,13 +46,16 @@ const SignUpForm = () => {
       }}
     >
       {({ errors, touched }) => (
-        <Form className={styles.form}>
-          <InputField name="login" errors={errors} touched={touched} />
-          <InputField name="password" errors={errors} touched={touched} />
-          <InputField name="name" errors={errors} touched={touched} />
-          <InputField name="email" errors={errors} touched={touched} />
-          <FormButton>Sign Up</FormButton>
-        </Form>
+        <>
+          <h2 className={styles.formTitle}>Please Sign Up</h2>
+          <Form className={styles.form}>
+            <InputField name="login" errors={errors} touched={touched} />
+            <InputField name="password" errors={errors} touched={touched} />
+            <InputField name="name" errors={errors} touched={touched} />
+            <InputField name="email" errors={errors} touched={touched} />
+            <FormButton>Sign Up</FormButton>
+          </Form>
+        </>
       )}
     </Formik>
   );

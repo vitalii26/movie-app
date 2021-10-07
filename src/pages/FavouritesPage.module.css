@@ -1,0 +1,30 @@
+.favouritesContainer {
+  width: 100%;
+  max-width: 1170px;
+  padding: 20px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.favouritesWrapper {
+  color: #045eb7;
+  font-size: 1.3rem;
+  width: 100%;
+  padding: 40px;
+}
+
+.favouritesTitle {
+  margin-bottom: 20px;
+}
+
+.favouritesLinkBtn {
+  display: inline-flex;
+  color: #edf6ff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  background-color: #30abf7;
+  border-radius: 10px;
+  padding: 20px;
+}

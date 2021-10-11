@@ -7,8 +7,6 @@ const RecommendationsTab = ({ id }) => {
   const { data: recommendations, isSuccess } =
     useGetMovieRecommendationsQuery(id);
 
-  console.log(recommendations);
-
   return (
     <ul className={styles.recommendationsTab}>
       {isSuccess && recommendations.length ? (

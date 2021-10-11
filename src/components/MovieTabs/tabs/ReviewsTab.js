@@ -4,7 +4,7 @@ import styles from "./ReviewsTab.module.css";
 
 const ReviewsTab = ({ id }) => {
   const { data: reviews, isSuccess } = useGetMovieReviewsQuery(id);
-  console.log(reviews);
+
   return (
     <ul className={styles.reviewsTab}>
       {isSuccess && reviews.length ? (

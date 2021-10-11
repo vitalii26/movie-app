@@ -1,0 +1,43 @@
+.historyTitle {
+  color: #0082ff;
+  margin-bottom: 20px;
+}
+
+.historyList {
+  width: 100%;
+  list-style: none;
+}
+
+.historyListItem {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.historyLink {
+  display: flex;
+  padding: 20px 40px;
+  width: 100%;
+  max-width: 800px;
+  justify-content: space-between;
+  box-shadow: 0 0 10px 0 #30abf7;
+  border-radius: 10px;
+  color: #045eb7;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
+
+.historySubtitle {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.historyLink:hover {
+  box-shadow: 0 0 20px 5px #30abf7;
+}
+
+.important {
+  color: red;
+}

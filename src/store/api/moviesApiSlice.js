@@ -2,6 +2,10 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
   transformMoviesResult,
   transformMovieByIdResult,
+  transformMovieActorsResult,
+  transformMovieReviewsResult,
+  transformMovieRecommendationsResult,
+  transformSearchMovieResults,
 } from "./transformDataHelpers";
 
 const API_KEY = "b4092e659ce8a357e4a3fd2f0cbc515c";
@@ -13,7 +17,7 @@ export const moviesApiSlice = createApi({
   }),
   endpoints: (builder) => ({
     getMovies: builder.query({
-      query: () => `/discover/movie?api_key=${API_KEY}`,
+      query: (page) => `/discover/movie?api_key=${API_KEY}&page=${page}`,
       transformResponse: transformMoviesResult,
     }),
     getMovieById: builder.query({
@@ -21,7 +25,22 @@ export const moviesApiSlice = createApi({
       transformResponse: transformMovieByIdResult,
     }),
     searchMovie: builder.query({
-      query: (query) => `/search/movie?query=${query}&api_key=${API_KEY}`,
+      query: ({ query, page }) =>
+        `/search/movie?query=${query}&api_key=${API_KEY}&page=${page}`,
+      transformResponse: transformSearchMovieResults,
+    }),
+    getMovieActors: builder.query({
+      query: (id) => `/movie/${id}/credits?api_key=${API_KEY}&language=en-US`,
+      transformResponse: transformMovieActorsResult,
+    }),
+    getMovieReviews: builder.query({
+      query: (id) => `/movie/${id}/reviews?api_key=${API_KEY}&language=en-US`,
+      transformResponse: transformMovieReviewsResult,
+    }),
+    getMovieRecommendations: builder.query({
+      query: (id) =>
+        `/movie/${id}/recommendations?api_key=${API_KEY}&language=en-US`,
+      transformResponse: transformMovieRecommendationsResult,
     }),
   }),
 });
@@ -30,5 +49,8 @@ export const {
   useGetMoviesQuery,
   useGetMovieByIdQuery,
   useSearchMovieQuery,
-  useGetMovieGenresListQuery,
+  useLazySearchMovieQuery,
+  useGetMovieActorsQuery,
+  useGetMovieReviewsQuery,
+  useGetMovieRecommendationsQuery,
 } = moviesApiSlice;

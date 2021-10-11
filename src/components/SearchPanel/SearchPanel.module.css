@@ -4,6 +4,8 @@
   max-width: 800px;
   padding: 20px 40px;
   border-radius: 30px;
+  position: relative;
+  margin-bottom: 20px;
 }
 
 .searchInput {

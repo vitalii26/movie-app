@@ -5,12 +5,14 @@ import { signedInCheckMiddleware } from "./middlewares/signedInCheckMiddleware";
 import initAppReducer from "./initAppSlice";
 import registrationReducer from "./registrationSlice";
 import favouritesReducer from "./favouritesSlice";
+import historyReducer from "./historySlice";
 
 export const store = configureStore({
   reducer: {
     init: initAppReducer,
     registration: registrationReducer,
     favourites: favouritesReducer,
+    history: historyReducer,
     [moviesApiSlice.reducerPath]: moviesApiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>

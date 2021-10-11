@@ -1,0 +1,41 @@
+.suggests {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateY(100%);
+  list-style: none;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 150px 600px 50px #edf6ff;
+  opacity: 0;
+  transition: 0.3s ease;
+  animation: show 0.3s 1;
+  animation-fill-mode: forwards;
+  animation-delay: 0.2s;
+}
+
+.suggestsLink {
+  background-color: #30abf7;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  border: 1px solid #edf6ff;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: #edf6ff;
+  transition: 0.2s ease;
+}
+
+.suggestsLink:hover {
+  background-color: #045eb7;
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

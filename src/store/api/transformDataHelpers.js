@@ -1,21 +1,21 @@
-const IMG_PATH = "https://image.tmdb.org/t/p/original/";
+const IMG_PATH = "https://image.tmdb.org/t/p/original";
 
 export const transformMoviesResult = (response) => {
   const transformedData = response.results.map((movie) => ({
     backdrop: `${IMG_PATH}${movie.backdrop_path}`,
     poster: `${IMG_PATH}${movie.poster_path}`,
-    release: new Date(movie.release_date).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    }),
+    release: transformDateStringToUsFormat(movie.release_date),
     title: movie.title,
     id: movie.id,
     rating: movie.vote_average,
     genres: movie.genre_ids,
   }));
 
-  return { results: transformedData };
+  return {
+    results: transformedData,
+    totalPages: response.total_pages,
+    totalResults: response.total_results,
+  };
 };
 
 export const transformMovieByIdResult = (response) => {
@@ -28,7 +28,7 @@ export const transformMovieByIdResult = (response) => {
     title: response.original_title,
     overview: response.overview,
     tagline: response.tagline,
-    release: new Date(response.release_date).getFullYear().toString(),
+    release: transformDateStringToYear(response.release_date),
     video: response.video,
     voteAverage: response.vote_average,
     voteCount: response.vote_count,
@@ -43,4 +43,75 @@ export const transformMovieByIdResult = (response) => {
     }),
     imdbId: response.imdb_id,
   };
+};
+
+export const transformMovieActorsResult = (response) => {
+  const transformedData = response.cast.map((actor) => ({
+    character: actor.character,
+    id: actor.credit_id,
+    name: actor.name,
+    img: actor.profile_path
+      ? `${IMG_PATH}${actor.profile_path}`
+      : "https://image.shutterstock.com/image-vector/avatar-vector-male-profile-gray-260nw-538707355.jpg",
+  }));
+
+  return transformedData;
+};
+
+export const transformMovieRecommendationsResult = (response) => {
+  const transformedData = response.results.map((recommendation) => ({
+    backdrop: `${IMG_PATH}${recommendation.backdrop_path}`,
+    poster: `${IMG_PATH}${recommendation.poster_path}`,
+    title: recommendation.title,
+    id: recommendation.id,
+    release: transformDateStringToYear(recommendation.release_date),
+  }));
+
+  return transformedData;
+};
+
+export const transformMovieReviewsResult = (response) => {
+  const transformedData = response.results.map((review) => ({
+    author: review.author,
+    avatar:
+      review.author_details.avatar_path.slice(1) ||
+      "https://www.libarts.colostate.edu/wp-content/uploads/2018/02/userphoto.png",
+    content: review.content,
+    date: transformDateStringToUsFormat(review.created_at),
+    url: review.url,
+    id: review.id,
+  }));
+
+  return transformedData;
+};
+
+export const transformSearchMovieResults = (response) => {
+  const transformedData = response.results.map((movie) => ({
+    backdrop: `${IMG_PATH}${movie.backdrop_path}`,
+    poster: movie.poster_path
+      ? `${IMG_PATH}${movie.poster_path}`
+      : "https://upload.wikimedia.org/wikipedia/commons/c/c2/No_image_poster.png",
+    release: transformDateStringToYear(movie.release_date),
+    title: movie.title,
+    id: movie.id,
+    rating: movie.vote_average,
+    genres: movie.genre_ids,
+  }));
+
+  return {
+    results: transformedData,
+    totalPages: response.total_pages,
+    totalResults: response.total_results,
+  };
+};
+
+const transformDateStringToUsFormat = (date) =>
+  new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+const transformDateStringToYear = (date) => {
+  return new Date(date).getFullYear().toString();
 };

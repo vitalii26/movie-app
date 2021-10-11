@@ -1,0 +1,71 @@
+.recommendationsTab {
+  display: flex;
+  list-style: none;
+  justify-content: flex-start;
+  overflow-x: scroll;
+  padding: 20px 0 0;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.recommendationTabItem {
+  margin-right: 20px;
+}
+
+.recommendationCard {
+  min-width: 300px;
+}
+
+.recommendationsImgWrapper {
+  display: flex;
+  position: relative;
+  padding-top: 250px;
+  width: 500px;
+  margin-bottom: 20px;
+}
+
+.recommendationsImg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 5px 5px 0 #888;
+}
+
+.recommendationCardTitle {
+  color: #045eb7;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.recommendationCardText {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.recommendationsTab::-webkit-scrollbar {
+  height: 0.8rem;
+  width: 0.5rem;
+  padding: 0;
+}
+
+.recommendationsTab::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+.recommendationsTab::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.recommendationsTab::-webkit-scrollbar-thumb:hover {
+  background: #045eb7;
+}

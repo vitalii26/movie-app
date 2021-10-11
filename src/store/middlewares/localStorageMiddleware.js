@@ -5,6 +5,7 @@ import {
 import { initApp } from "../initAppSlice";
 import { signUp, initUsers, signIn } from "../registrationSlice";
 import { initFavourites, toggleFavourite } from "../favouritesSlice";
+import { initHistory, addToHistory } from "../historySlice";
 
 export const localStorageMiddleware = (store) => (next) => (action) => {
   const { getState, dispatch } = store;
@@ -18,9 +19,12 @@ export const localStorageMiddleware = (store) => (next) => (action) => {
 
   if (signIn.match(action)) {
     const favourites = loadStateFromStorage("favourites");
+    const history = loadStateFromStorage("history");
     const currentUserLogin = getState().registration.currentUser.login;
     const currentUserFavourites = favourites?.[currentUserLogin];
+    const currentUserHistory = history?.[currentUserLogin];
     dispatch(initFavourites(currentUserFavourites));
+    dispatch(initHistory(currentUserHistory));
   }
 
   if (signUp.match(action)) {
@@ -39,6 +43,20 @@ export const localStorageMiddleware = (store) => (next) => (action) => {
         [currentUserLogin]: currentUserFavouriteMovies,
       };
       saveStateToStorage("favourites", newStorageFavourites);
+    }
+  }
+
+  if (addToHistory.match(action)) {
+    const storageHistory = loadStateFromStorage("history");
+    const currentUserHistory = getState().history.movieList;
+    const currentUserLogin = getState().registration.currentUser.login;
+
+    if (currentUserLogin) {
+      const newStorageHistory = {
+        ...storageHistory,
+        [currentUserLogin]: currentUserHistory,
+      };
+      saveStateToStorage("history", newStorageHistory);
     }
   }
 };

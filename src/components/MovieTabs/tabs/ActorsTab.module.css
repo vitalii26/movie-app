@@ -1,0 +1,88 @@
+.actorTab {
+  display: flex;
+  list-style: none;
+  justify-content: flex-start;
+  overflow-x: scroll;
+  padding: 20px 0 0;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.actorTabItem {
+  margin-right: 10px;
+}
+
+.actorCard {
+  display: flex;
+  width: 170px;
+  flex-direction: column;
+  border-radius: 10px;
+  height: 100%;
+  position: relative;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0 5px 5px 0 #888;
+}
+
+.actorCardImgWrapper {
+  position: relative;
+  padding-top: 250px;
+}
+
+.actorCardImg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.actorCardTitle {
+  color: #045eb7;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0px 20px;
+  margin-bottom: 20px;
+}
+
+.actorCardCharacter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.actorCardDescrition {
+  padding: 20px;
+}
+
+.actorTab::-webkit-scrollbar {
+  height: 0.8rem;
+  width: 0.5rem;
+  padding: 0;
+}
+
+.actorTab::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+.actorTab::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.actorTab::-webkit-scrollbar-thumb:hover {
+  background: #045eb7;
+}
+
+.actorsCardText {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+}

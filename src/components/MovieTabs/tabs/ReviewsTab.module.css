@@ -1,0 +1,55 @@
+.reviewsTab {
+  padding: 20px 0;
+  list-style: none;
+}
+
+.reviewsTabItem {
+  margin-bottom: 20px;
+}
+
+.reviewsTabItem:last-child {
+  margin-bottom: 0;
+}
+
+.reviewCard {
+  display: flex;
+  padding: 30px;
+  box-shadow: 0 0 5px grey;
+  border-radius: 20px;
+}
+
+.reviewCardImg {
+  border-radius: 50%;
+  margin-right: 30px;
+  width: 100px;
+  height: 100px;
+}
+
+.reviewCardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.reviewCardSubtitle {
+  font-weight: normal;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.reviewCardLink {
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: #0082ff;
+  margin-bottom: 5px;
+}
+
+.reviewCardDate {
+  margin-bottom: 15px;
+}
+
+.reviewCardText {
+  text-align: justify;
+  font-size: 1.1rem;
+}

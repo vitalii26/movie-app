@@ -18,12 +18,14 @@ export const localStorageMiddleware = (store) => (next) => (action) => {
   }
 
   if (signIn.match(action)) {
-    const favourites = loadStateFromStorage("favourites");
-    const history = loadStateFromStorage("history");
     const currentUserLogin = getState().registration.currentUser.login;
+
+    const favourites = loadStateFromStorage("favourites");
     const currentUserFavourites = favourites?.[currentUserLogin];
-    const currentUserHistory = history?.[currentUserLogin];
     dispatch(initFavourites(currentUserFavourites));
+
+    const history = loadStateFromStorage("history");
+    const currentUserHistory = history?.[currentUserLogin];
     dispatch(initHistory(currentUserHistory));
   }
 

@@ -27,7 +27,8 @@
   transition: 0.2s ease;
 }
 
-.suggestsLink:hover {
+.suggestsLink:hover,
+.suggestsLink:focus {
   background-color: #045eb7;
 }
 
@@ -38,4 +39,8 @@
   100% {
     opacity: 1;
   }
+}
+
+.active a {
+  background-color: red;
 }

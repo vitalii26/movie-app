@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Router, Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import history from "./utils/history";
+import ErrorBoundry from "./components/ErrorBoundry";
 import Header from "./components/Header";
 import PrivateRoute from "./components/containers/PrivateRoute";
 import HomePage from "./pages/HomePage";
@@ -22,20 +23,25 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="App">
-      <Router history={history}>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <PrivateRoute path="/favourites" component={FavouritesPage} />
-          <PrivateRoute path="/history" component={HistoryPage} />
-          <Route path="/signup" component={SignUpPage} />
-          <Route path="/signin" component={SignInPage} />
-          <Route path="/search" component={SearchPage} />
-          <Route path="/movies/:id" component={MoviePage} />
-        </Switch>
-      </Router>
-    </div>
+    <ErrorBoundry>
+      <div className="App">
+        <Router history={history}>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <PrivateRoute path="/favourites" component={FavouritesPage} />
+            <PrivateRoute path="/history" component={HistoryPage} />
+            <Route path="/signup" component={SignUpPage} />
+            <Route path="/signin" component={SignInPage} />
+            <Route path="/search" component={SearchPage} />
+            <Route path="/movies/:id" component={MoviePage} />
+            <Route
+              render={() => <h2 className="App-title">Page not found</h2>}
+            />
+          </Switch>
+        </Router>
+      </div>
+    </ErrorBoundry>
   );
 }
 

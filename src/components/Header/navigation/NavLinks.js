@@ -1,13 +1,14 @@
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signOut } from "../../store/registrationSlice";
+import {
+  signOut,
+  selectCurrentUserName,
+} from "../../../store/registrationSlice";
 import styles from "./NavLinks.module.css";
 
 const NavLinks = () => {
   const dispatch = useDispatch();
-  const currentUserName = useSelector(
-    (state) => state.registration.currentUser.name
-  );
+  const currentUserName = useSelector(selectCurrentUserName);
 
   const signOutHandler = () => {
     dispatch(signOut());

@@ -20,8 +20,12 @@ export const transformMoviesResult = (response) => {
 
 export const transformMovieByIdResult = (response) => {
   return {
-    backdrop: `${IMG_PATH}${response.backdrop_path}`,
-    poster: `${IMG_PATH}${response.poster_path}`,
+    backdrop: response.backdrop_path
+      ? `${IMG_PATH}${response.backdrop_path}`
+      : `https://wallpaperaccess.com/full/2063931.jpg`,
+    poster: response.poster_path
+      ? `${IMG_PATH}${response.poster_path}`
+      : "https://moviereelist.com/wp-content/uploads/2019/07/poster-placeholder.jpg",
     runtime: `${Math.floor(response.runtime / 60)}h ${response.runtime % 60}m`,
     genres: response.genres.map((genre) => genre.name).join(", "),
     id: response.id,
@@ -73,9 +77,9 @@ export const transformMovieRecommendationsResult = (response) => {
 export const transformMovieReviewsResult = (response) => {
   const transformedData = response.results.map((review) => ({
     author: review.author,
-    avatar:
-      review.author_details.avatar_path.slice(1) ||
-      "https://www.libarts.colostate.edu/wp-content/uploads/2018/02/userphoto.png",
+    avatar: review.author_details.avatar_path
+      ? review.author_details.avatar_path.slice(1)
+      : "https://www.libarts.colostate.edu/wp-content/uploads/2018/02/userphoto.png",
     content: review.content,
     date: transformDateStringToUsFormat(review.created_at),
     url: review.url,

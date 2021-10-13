@@ -21,7 +21,8 @@ export const moviesApiSlice = createApi({
       transformResponse: transformMoviesResult,
     }),
     getMovieById: builder.query({
-      query: (id) => `/movie/${id}?api_key=${API_KEY}&language=en-US`,
+      query: (id) =>
+        `/movie/${id}?api_key=${API_KEY}&language=en-US&append_to_response=actors,reviews,recommendations`,
       transformResponse: transformMovieByIdResult,
     }),
     searchMovie: builder.query({
@@ -42,6 +43,26 @@ export const moviesApiSlice = createApi({
         `/movie/${id}/recommendations?api_key=${API_KEY}&language=en-US`,
       transformResponse: transformMovieRecommendationsResult,
     }),
+    getMoviesByIdsArray: builder.query({
+      async queryFn(ids, _queryApi, _extraOptions, fetchWithBQ) {
+        const results = await Promise.all(
+          ids.map((id) =>
+            fetchWithBQ(`/movie/${id}?api_key=${API_KEY}&language=en-US`)
+          )
+        );
+
+        const merged = [...results.map((result) => result.data)];
+        const errors = [
+          ...results
+            .filter((result) => result.error != null)
+            .map((result) => result.error),
+        ];
+
+        if (errors.length > 0) return { error: errors };
+
+        return { data: merged.map((movie) => transformMovieByIdResult(movie)) };
+      },
+    }),
   }),
 });
 
@@ -53,4 +74,5 @@ export const {
   useGetMovieActorsQuery,
   useGetMovieReviewsQuery,
   useGetMovieRecommendationsQuery,
+  useGetMoviesByIdsArrayQuery,
 } = moviesApiSlice;

@@ -77,3 +77,11 @@
 .movieFavouriteBtn:hover {
   color: #30abf7;
 }
+
+@media screen and (max-width: 586px) {
+  .movieContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

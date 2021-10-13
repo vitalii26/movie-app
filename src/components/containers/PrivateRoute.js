@@ -1,9 +1,10 @@
 import { Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { signedInSelector } from "../../store/registrationSlice";
+import PropTypes from "prop-types";
+import { selectIsSignedIn } from "../../store/registrationSlice";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const signedIn = useSelector(signedInSelector);
+  const signedIn = useSelector(selectIsSignedIn);
 
   return (
     <Route
@@ -13,6 +14,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       }
     />
   );
+};
+
+PrivateRoute.propTypes = {
+  Component: PropTypes.elementType,
+  rest: PropTypes.any,
 };
 
 export default PrivateRoute;

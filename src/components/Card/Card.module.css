@@ -68,3 +68,9 @@
 .cardFavourite:hover {
   color: #30abf7;
 }
+
+@media screen and (max-width: 586px) {
+  .card {
+    max-width: 100%;
+  }
+}

@@ -3,11 +3,13 @@ import ReactPaginate from "react-paginate";
 import SearchPanel from "../components/SearchPanel";
 import PageContainer from "../components/containers/PageContainer";
 import Card from "../components/Card";
+import Spinner from "../components/Spinner";
 import { useGetMoviesQuery } from "../store/api/moviesApiSlice";
 import styles from "./HomePage.module.css";
 
 const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(0);
+
   const {
     data: movies,
     isLoading,
@@ -23,17 +25,19 @@ const HomePage = () => {
       <PageContainer>
         <h1 className={styles.title}>Welcome.</h1>
         <h2 className={styles.subtitle}>
-          Millions of movies, TV shows and people to discover. Explore now.
+          Millions of movies to discover. Explore now.
         </h2>
         <SearchPanel />
       </PageContainer>
+
       <PageContainer className={styles.moviesContainer}>
-        {isLoading && <span>Loading...</span>}
+        {isLoading && <Spinner />}
         {isSuccess &&
           movies.results.map((movie) => {
             return <Card key={movie.id} movie={movie} />;
           })}
       </PageContainer>
+
       {isSuccess && (
         <ReactPaginate
           previousLabel={"prev"}

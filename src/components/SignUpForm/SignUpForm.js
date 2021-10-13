@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form } from "formik";
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
-import { signUp } from "../../store/registrationSlice";
+import { signUp, selectRegisteredUsers } from "../../store/registrationSlice";
 import InputField from "../InputField";
 import FormButton from "../FormButton";
 import styles from "./SignUpForm.module.css";
@@ -20,7 +20,7 @@ const SignUpSchema = Yup.object().shape({
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.registration.users);
+  const users = useSelector(selectRegisteredUsers);
   const history = useHistory();
 
   return (

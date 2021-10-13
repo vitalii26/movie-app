@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
+import memoize from "lodash.memoize";
 
 const initialState = {
-  movieList: {},
+  movieList: [],
 };
 
 const favouritesSlice = createSlice({
@@ -9,15 +11,15 @@ const favouritesSlice = createSlice({
   initialState,
   reducers: {
     initFavourites(state, action) {
-      state.movieList = action.payload || {};
+      state.movieList = action.payload || [];
     },
     toggleFavourite(state, action) {
-      const { id, movie } = action.payload;
+      const id = action.payload;
 
-      if (!state.movieList?.[id]) {
-        state.movieList[id] = movie;
+      if (!state.movieList.includes(id)) {
+        state.movieList.push(id);
       } else {
-        delete state.movieList[id];
+        state.movieList = state.movieList.filter((movie) => movie !== id);
       }
     },
   },
@@ -25,3 +27,9 @@ const favouritesSlice = createSlice({
 
 export const { initFavourites, toggleFavourite } = favouritesSlice.actions;
 export default favouritesSlice.reducer;
+
+export const selectFavouriteMovies = (state) => state.favourites.movieList;
+export const selectIsMovieFavourite = createSelector(
+  [selectFavouriteMovies],
+  (movieList) => memoize((id) => movieList.includes(+id))
+);

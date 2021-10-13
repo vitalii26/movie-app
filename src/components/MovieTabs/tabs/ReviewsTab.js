@@ -1,14 +1,27 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useGetMovieReviewsQuery } from "../../../store/api/moviesApiSlice";
+import ErrorIndicator from "../../ErrorIndicator";
+import Spinner from "../../Spinner";
 import styles from "./ReviewsTab.module.css";
 
 const ReviewsTab = ({ id }) => {
-  const { data: reviews, isSuccess } = useGetMovieReviewsQuery(id);
+  const {
+    data: reviewsData,
+    isSuccess,
+    isLoading,
+    isError,
+  } = useGetMovieReviewsQuery(id);
 
   return (
     <ul className={styles.reviewsTab}>
-      {isSuccess && reviews.length ? (
-        reviews.map((review) => {
+      {isLoading && <Spinner />}
+
+      {isError && <ErrorIndicator />}
+
+      {isSuccess &&
+        reviewsData.length > 0 &&
+        reviewsData.map((review) => {
           return (
             <li className={styles.reviewsTabItem} key={review.id}>
               <div className={styles.reviewCard}>
@@ -35,14 +48,19 @@ const ReviewsTab = ({ id }) => {
               </div>
             </li>
           );
-        })
-      ) : (
+        })}
+
+      {isSuccess && reviewsData.length < 1 && (
         <div className={styles.reviewCardSubtitle}>
           There aren't any reviews
         </div>
       )}
     </ul>
   );
+};
+
+ReviewsTab.propTypes = {
+  id: PropTypes.string.isRequired,
 };
 
 export default ReviewsTab;

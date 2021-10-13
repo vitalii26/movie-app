@@ -15,6 +15,7 @@ import styles from "./MovieTabs.module.css";
 const MovieTabs = () => {
   const { id } = useParams();
   const { path, url } = useRouteMatch();
+
   return (
     <PageContainer>
       <div className={styles.tabs}>

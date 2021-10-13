@@ -8,6 +8,14 @@
   flex-wrap: wrap;
 }
 
+.moviesTitle {
+  color: #045eb7;
+  font-weight: bold;
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+}
+
 .pagination {
   width: 100%;
   max-width: 700px;

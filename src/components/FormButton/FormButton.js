@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styles from "./FormButton.module.css";
 
 const FormButton = ({ children }) => {
@@ -6,6 +7,10 @@ const FormButton = ({ children }) => {
       {children}
     </button>
   );
+};
+
+FormButton.propTypes = {
+  children: PropTypes.string.isRequired,
 };
 
 export default FormButton;

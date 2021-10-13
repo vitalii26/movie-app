@@ -23,3 +23,5 @@ const historySlice = createSlice({
 export const { initHistory, checkAddToHistory, addToHistory } =
   historySlice.actions;
 export default historySlice.reducer;
+
+export const selectHistoryMovieList = (state) => state.history.movieList;

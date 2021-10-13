@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import logo from "../../assets/main-logo.png";
-import NavBar from "../NavBar";
-import NavLinks from "../NavLinks";
-import { signedInSelector } from "../../store/registrationSlice";
+import NavBar from "./navigation/NavBar";
+import NavLinks from "./navigation/NavLinks";
+import { selectIsSignedIn } from "../../store/registrationSlice";
 import styles from "./Header.module.css";
 
 const Header = () => {
-  const signedIn = useSelector(signedInSelector);
+  const signedIn = useSelector(selectIsSignedIn);
 
   return (
     <header className={styles.header}>

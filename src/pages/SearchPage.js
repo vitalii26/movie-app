@@ -1,20 +1,19 @@
 import { useState } from "react";
-import { useLocation, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { useSearchMovieQuery } from "../store/api/moviesApiSlice";
+import useQuery from "../hooks/useQuery";
 import SearchPanel from "../components/SearchPanel/SearchPanel";
 import PageContainer from "../components/containers/PageContainer";
 import Card from "../components/Card";
+import Spinner from "../components/Spinner";
+import ErrorIndicator from "../components/ErrorIndicator";
 import styles from "./SearchPage.module.css";
-
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
 
 const SearchPage = () => {
   const currentUrlParams = useQuery();
   const history = useHistory();
-  const queryText = currentUrlParams.get("query") || "";
+  const queryText = currentUrlParams.get("query") || "a";
   const queryPage = currentUrlParams.get("page") || 1;
   const [currentPage, setCurrentPage] = useState(Number(queryPage));
 
@@ -22,6 +21,7 @@ const SearchPage = () => {
     data: movies,
     isLoading,
     isSuccess,
+    isError,
   } = useSearchMovieQuery({ query: queryText, page: currentPage });
 
   const handlePageClick = (e) => {
@@ -33,13 +33,19 @@ const SearchPage = () => {
   return (
     <PageContainer>
       <SearchPanel />
-      <PageContainer className={styles.moviesContainer}>
-        {isLoading && <span>Loading...</span>}
-        {isSuccess &&
+      <div className={styles.moviesContainer}>
+        {isLoading && <Spinner />}
+        {isError && <ErrorIndicator />}
+
+        {isSuccess && movies.results.length > 0 ? (
           movies.results.map((movie) => {
             return <Card key={movie.id} movie={movie} />;
-          })}
-      </PageContainer>
+          })
+        ) : (
+          <h2 className={styles.moviesTitle}>oops! Nothing Found</h2>
+        )}
+      </div>
+
       {isSuccess && movies.totalPages > 1 && (
         <ReactPaginate
           previousLabel={"prev"}

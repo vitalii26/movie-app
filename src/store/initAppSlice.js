@@ -15,5 +15,4 @@ const initAppSlice = createSlice({
 });
 
 export const { initApp } = initAppSlice.actions;
-
 export default initAppSlice.reducer;

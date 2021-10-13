@@ -38,4 +38,7 @@ const registrationSlice = createSlice({
 export const { initUsers, signIn, signOut, signUp } = registrationSlice.actions;
 export default registrationSlice.reducer;
 
-export const signedInSelector = (state) => state.registration.signedIn;
+export const selectIsSignedIn = (state) => state.registration.signedIn;
+export const selectRegisteredUsers = (state) => state.registration.users;
+export const selectCurrentUserName = (state) =>
+  state.registration.currentUser.name;

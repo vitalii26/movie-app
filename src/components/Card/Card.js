@@ -1,20 +1,22 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleFavourite } from "../../store/favouritesSlice";
-import FavouriteBtn from "../FavouriteBtn/FavouriteBtn";
+import {
+  toggleFavourite,
+  selectIsMovieFavourite,
+} from "../../store/favouritesSlice";
+import { ReactComponent as FavouriteBtn } from "../../assets/favouriteBtn.svg";
 import styles from "./Card.module.css";
 
 const Card = ({ movie }) => {
   const { id, poster, title, release } = movie;
   const dispatch = useDispatch();
-
-  const isFavourite = useSelector((state) =>
-    Boolean(state.favourites.movieList?.[id])
-  );
+  const isFavouriteSelector = useSelector(selectIsMovieFavourite);
+  const isFavourite = isFavouriteSelector(id);
 
   const toggleFavouriteMovie = () => {
-    dispatch(toggleFavourite({ id: movie.id, movie }));
+    dispatch(toggleFavourite(movie.id));
   };
 
   return (
@@ -27,7 +29,7 @@ const Card = ({ movie }) => {
           {title}
         </Link>
         <FavouriteBtn
-          isFavourite={isFavourite}
+          style={isFavourite ? { color: "red" } : null}
           className={styles.cardFavourite}
           onClick={toggleFavouriteMovie}
         />
@@ -35,6 +37,10 @@ const Card = ({ movie }) => {
       </div>
     </div>
   );
+};
+
+Card.propTypes = {
+  movie: PropTypes.object.isRequired,
 };
 
 export default Card;

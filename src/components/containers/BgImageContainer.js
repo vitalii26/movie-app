@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const BgImageContainer = ({ bgPath, children }) => {
   return (
     <section
@@ -10,6 +12,11 @@ const BgImageContainer = ({ bgPath, children }) => {
       {children}
     </section>
   );
+};
+
+BgImageContainer.propTypes = {
+  bgPath: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default BgImageContainer;
